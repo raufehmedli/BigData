@@ -1,0 +1,32 @@
+CREATE TABLE Worker(
+id NUMBER CONSTRAINT id_pk PRIMARY KEY,
+name VARCHAR2(30) CONSTRAINT name_nn NOT NULL,
+surname VARCHAR2(30) CONSTRAINT su_nn NOT NULL,
+salary NVARCHAR2(15) CONSTRAINT sa_nn NOT NULL,
+Card_number NUMBER(15) CONSTRAINT c_n_u NOT NULL UNIQUE,
+vezife NVARCHAR2(10) CONSTRAINT ve_nn NOT NULL
+);
+
+INSERT INTO Worker VALUES(1,'Rauf','Ahmedli', 1530, 145896587423516, 'Back-end');
+INSERT INTO Worker VALUES(2,'Ferid','Abishov', 1569, 145896584125986, 'Front-end');
+
+INSERT INTO Worker VALUES(3,'Huseyn','Cafarli', 1460, 145896587421647, 'sql dev');
+
+select * from user_constraints where table_name = 'Worker';
+
+select * from user_constraints where constraint_name = 'NAME_NN';
+
+
+ALTER TABLE Worker RENAME CONSTRAINT NAME_NN TO NA_NN;
+
+ALTER TABLE Worker DROP CONSTRAINT VE_NN;
+ALTER TABLE Worker DROP CONSTRAINT ID_PK;
+
+ALTER TABLE Worker ADD CONSTRAINT VE_U UNIQUE(vezife);
+ALTER TABLE Worker ADD CONSTRAINT ID_PK PRIMARY KEY(ID);
+ 
+ALTER TABLE Worker MODIFY VEZIFE NOT NULL;
+
+ALTER TABLE Worker ADD CONSTRAINT ID_PK PRIMARY KEY(vezife);
+
+DESC Worker;

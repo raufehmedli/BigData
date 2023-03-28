@@ -1,0 +1,52 @@
+/* Set Unused column */
+CREATE TABLE employee(
+id NUMBER CONSTRAINT e_id_pk PRIMARY KEY,
+name VARCHAR2(30) CONSTRAINT e_na_nn NOT NULL,
+surname VARCHAR2(30) CONSTRAINT e_su_nn NOT NULL,
+salary NVARCHAR2(15) CONSTRAINT e_sa_nn NOT NULL,
+vezife NVARCHAR2(10) CONSTRAINT e_ve_nn NOT NULL
+);
+
+INSERT INTO employee VALUES(1,'Rauf','Ahmedov', 1530, 'Back-end');
+INSERT INTO employee VALUES(2,'Eyvaz','Suleymanov', 1569, 'Front-end');
+INSERT INTO employee VALUES(3,'Huseyn','Cafarli', 1460, 'sql dev');
+
+SELECT * FROM employee;
+
+ALTER TABLE employee SET UNUSED COLUMN vezife;
+
+SELECT * FROM ALL_UNUSED_COL_TABS;
+
+ALTER TABLE employee DROP UNUSED COLUMNS;
+
+
+/* Sequence */
+CREATE SEQUENCE SEQ
+INCREMENT BY 2
+START WITH 2
+MINVALUE 2
+MAXVALUE 20
+CYCLE
+CACHE 7;
+
+SELECT SEQ.NEXTVAL FROM DUAL;
+
+SELECT SEQ.CURRVAL FROM DUAL;
+
+CREATE TABLE T(
+ID NUMBER(5) PRIMARY KEY,
+TEST NVARCHAR2(10)
+);
+INSERT INTO T VALUES(SEQ.NEXTVAL, 'Test');
+INSERT INTO T VALUES(SEQ.NEXTVAL, 'Test1');
+
+SELECT * FROM t;
+
+DROP SEQUENCE SEQ;
+
+/* DML */
+INSERT INTO employee(id, name, surname, salary) VALUES(3,'Huseyn','Cafarli', 1460);
+
+UPDATE employee SET salary=1600 where id=1;
+
+DELETE FROM employee where id=1
