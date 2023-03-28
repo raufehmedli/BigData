@@ -47,6 +47,6 @@ DROP SEQUENCE SEQ;
 /* DML */
 INSERT INTO employee(id, name, surname, salary) VALUES(3,'Huseyn','Cafarli', 1460);
 
-UPDATE employee SET salary=1600 where id=1;
+UPDATE employee SET salary=1600 where id=2;
 
-DELETE FROM employee where id=1
+DELETE FROM employee where id=2;
